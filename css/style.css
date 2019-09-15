@@ -2,6 +2,7 @@
 header{
 	background: #edeff1;
 }
+
 a.nav-link{
 	font-size: 16px;
 	margin: 0px 5px;
@@ -15,35 +16,7 @@ a.nav-link:hover{
 }
 
 /* Banner Section */
-.banner{
-	background: url(../img/image_2.jpg) no-repeat center;
-	background-size: cover;
-	padding: 25px 0px;
-}
 
-.banner h1{
-	color: #000004;
-	padding-top: 240px;
-	font-size: 40px;
-}
-.banner p{
-	color: #1A394C;
-	font-size: 20px;
-}
-/*781313*/
-.banner h2{
-	color: #212529;
-}
-.banner-content{
-	margin-top: 75px;
-}
-.btn-banner{
-	background: #fff;
-    color: orange;
-    padding: 7px 25px;
-    border-radius: 25px;
-    margin-top: 25px;
-}
 
 /* News Section Start  */
 .news{
@@ -91,6 +64,8 @@ a.nav-link:hover{
 .gallery{
 	padding: 75px 0px;
 }
+
+
 
 /* Footer Section CSS */
 footer{
