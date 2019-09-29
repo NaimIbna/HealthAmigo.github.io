@@ -1,93 +1,44 @@
-var dataSource = [];
-var no=0;
+var firebaseConfig = {
+  apiKey: "AIzaSyCfllTVi8y7aCfskgsyksczfx9Y93Mof7k",
+  authDomain: "healthamigo-contact.firebaseapp.com",
+  databaseURL: "https://healthamigo-contact.firebaseio.com",
+  projectId: "healthamigo-contact",
+  storageBucket: "",
+  messagingSenderId: "455247301314",
+  appId: "1:455247301314:web:da644092326d8b666c895b"
+};
+firebase.initializeApp(firebaseConfig);
 
-function showTable(){
-    resetForm();
-	document.getElementById("add-new-div").style.display = 'none';
-	document.getElementById("tour-places-div").style.display = 'block';
+var messagesRef = firebase.database().ref('messages');
+
+document.getElementById('submit_button').addEventListener('click', submitForm);
+
+function submitForm(e) {
+  e.preventDefault();
+  document.querySelector('.alert').style.display = 'block';
+  var name = getInputVal('name');
+  var company = getInputVal('company');
+  var email = getInputVal('email');
+  var phone = getInputVal('phone');
+  var message = getInputVal('message');
+
+  var newMessageRef = messagesRef.push();
+  newMessageRef.set({
+    'name': name,
+    'company': company,
+    'email': email,
+    'phone': phone,
+    'message': message
+  }).then(x => {
+    document.querySelector('.alert').style.display = 'none';
+    document.getElementById('contactForm').reset();
+    document.location.href = "./index.html";
+  });
 }
 
-function BackToaddPlace() {
-    resetForm();
-	document.getElementById("add-new-div").style.display = 'block';
-    document.getElementById("tour-places-div").style.display = 'none';
+// Function to get get form values
+function getInputVal(id) {
+  return document.getElementById(id).value;
 }
 
-function resetForm() {
-    document.getElementById('name').value = "";
-    document.getElementById('address').value = "";
-    document.getElementById('rating').selectedIndex = 0; 
-    document.getElementById('message').value = "";
-     document.getElementById('pic').value = "";
-}
 
-function addPlace() {
-    debugger
-    var newPlace = {
-        name: document.getElementById('name').value,
-        address: document.getElementById('address').value,
-        rating: document.getElementById('rating').value,
-        message: document.getElementById('message').value,
-        picture: document.getElementById('pic').value
-
-    };
-
-    var file = document.querySelector('input[type=file]').files[0];
-    var reader = new FileReader();
-
-    if (document.getElementById('pic').value !== "") {
-        reader.addEventListener("load", function () {
-            newPlace.pic = reader.result;
-
-            dataSource.push(newPlace);
-            clearGrid();
-            loadGrid(dataSource);
-        });
-    }
-    else {
-        dataSource.push(newPlace);
-        clearGrid()
-        loadGrid(dataSource);
-    }
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-}
-
-function loadGrid(data) {
-    data.forEach(function (row) {
-        var table = document.getElementById("table-places");
-        var newRow = table.insertRow(table.rows.length);
-
-        var cel1 = newRow.insertCell(0);
-        var cel2 = newRow.insertCell(1);
-        var cel3 = newRow.insertCell(2);
-        var cel4 = newRow.insertCell(3);
-        var cel5 = newRow.insertCell(4);
-
-        cel1.innerHTML = row.name;
-        cel2.innerHTML = row.address;
-        cel3.innerHTML = row.rating;
-        cel4.innerHTML = row.message;
-
-        //Create Image DOM element
-		var x = document.createElement("IMG");
-		x.setAttribute("src", "");
-		x.setAttribute("width", "304");
-		x.setAttribute("height", "228");
-		x.setAttribute("alt", "something");
-		x.setAttribute("id", "new-img"+(++no));
-        cel4.appendChild(x);
-        //Add picture
-		var preview = document.querySelector("img#new-img" + no);
-        preview.src = row.pic;
-    });
-    showTable();
-}
-
-function clearGrid() {
-    var table = document.getElementById("table-places");
-    for (var i = table.rows.length - 1; i > 0; --i)
-        table.deleteRow(i);
-}

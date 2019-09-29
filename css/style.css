@@ -7,16 +7,20 @@ a.nav-link{
 	font-size: 16px;
 	margin: 0px 5px;
 	border-radius: 25px;
-       -webkit-transition: 0.4s ease-in-out;
-       -moz-transition: 0.4s ease-in-out;
-       -o-transition: 0.4s ease-in-out;
-       transition: 0.4s ease-in-out;
 }
 
 a.nav-link:hover{
 	font-color: white;
 	cursor: pointer;
     background: #5C98BB;
+}
+a{
+	color: orange;
+}
+a:hover{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
 }
 
 /* Banner Section */

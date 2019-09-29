@@ -1,0 +1,75 @@
+/* Header Section */
+header{
+	background: #edeff1;
+}
+
+a.nav-link{
+	font-size: 16px;
+	margin: 0px 5px;
+	border-radius: 25px;
+}
+
+a.nav-link:hover{
+	font-color: white;
+	cursor: pointer;
+    background: #5C98BB;
+}
+/* Header Section Ends*/
+.about{
+	height: 500px;
+
+}
+h1 {
+	color: #45B04F;
+	margin: 25px;
+}
+
+h3 {
+    margin: 1.28205em 0;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+
+/* Footer Section CSS */
+footer{
+	background: #292a2b;
+	padding: 20px 0px;
+}
+footer p{
+    color: #fff;
+}
+
+footer a{
+	color: #fde52c;
+}
+footer a:hover{
+	color: #fde52c;
+	text-decoration: none;
+}
+.footer-social-links{
+	text-align: right;
+}
+.footer-social-links ul{
+	padding: 0;
+2
+.footer-social-links ul li{
+	list-style: none;
+    display: inline;
+    width: 40px;
+    height: 40px;
+    margin: 0px 10px;
+}
+.footer-social-links ul li .fa{
+	color: #fff;
+}
+.footer-social-links ul li .fa:hover{
+	color: #fde52c;
+}
+
