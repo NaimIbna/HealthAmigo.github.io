@@ -9,15 +9,34 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-var rootRef = firebase.database().ref().child("messages");
+function createTable() {
+  var table = document.getElementById('table_body');
 
-rootRef.on("child_added", snapshot =>{
+  var refEmail = "messages";
+  var emailsRef = firebase.database().ref(refEmail);
+  emailsRef.on('value', data => {
+    var alldata = data.val();
+    var keys = Object.keys(alldata);
+    
+    for (var i = 0; i < keys.length; i++) {
+      var index = keys[i];
+	  
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = alldata[index].name;
+        cell2.innerHTML = alldata[index].company;
+        cell3.innerHTML = alldata[index].email;
+		cell4.innerHTML = alldata[index].message;
+    }
+  }, errEmailsData);
+}
 
-	var name = snapshot.child("name").val();
-	var company = snapshot.child("company").val();
-	var email = snapshot.child("email").val();
-	var phone = snapshot.child("phone").val();
-	var message = snapshot.child("message").val();
+function errEmailsData(err) {
+  console.log("Error!! id: ");
+  console.log(err);
+}
 
-	$("#table_body").append("<tr><td>" + name + "</td><td>" + company + "</td><td>" + email + "</td><td>" + phone + "</td><td>" + message + "</td><td><button>Remove</button></td></tr>");
-});
+createTable();
