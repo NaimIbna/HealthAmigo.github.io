@@ -41,7 +41,7 @@ function createTable() {
     
     for (var i = 0; i < keys.length; i++) {
       var index = keys[i];
-	  
+    
         var row = table.insertRow();
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -50,7 +50,7 @@ function createTable() {
         cell1.innerHTML = alldata[index].name;
         cell2.innerHTML = alldata[index].company;
         cell3.innerHTML = alldata[index].email;
-		cell4.innerHTML = alldata[index].message;
+    cell4.innerHTML = alldata[index].message;
     }
   }, errEmailsData);
 }
