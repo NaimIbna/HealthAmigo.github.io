@@ -38,7 +38,7 @@ function submitForm(e){
   // Hide alert after 3 seconds
   setTimeout(function(){
     document.querySelector('.alert').style.display = 'none';
-  },3000);
+  },100000);
 
   // Clear form
   document.getElementById('contactForm').reset();
@@ -47,7 +47,7 @@ function submitForm(e){
 
   setTimeout(function(){
     document.location.href="./index.html";
-  },3050);
+  },1000050);
 
 
 }

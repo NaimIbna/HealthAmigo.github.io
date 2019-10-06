@@ -23,6 +23,7 @@ login.addEventListener('click', e => {
     console.log("Logged In");
     document.location.href = "./index.html?Login=Successful";
   }).catch(e=>{
+  	window.alert("Error :"+e.message);
     console.log("Error!  id: "+e.message);
   });
 

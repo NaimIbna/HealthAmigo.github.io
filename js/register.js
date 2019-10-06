@@ -14,6 +14,7 @@ var inputEmail = document.getElementById('inputEmail');
 var inputPassword = document.getElementById('inputPassword');
 var inputConfirmPassword = document.getElementById('inputConfirmPassword');
 var register = document.getElementById('register');
+var warning = document.getElementById('warning');
 
 register.addEventListener('click', ref => {
   ref.preventDefault();
@@ -21,7 +22,10 @@ register.addEventListener('click', ref => {
   var email = inputEmail.value;
   var password = inputPassword.value;
   var confirmPassword = inputConfirmPassword.value;
-
+  
+  if(password.length < 6) warning.style.display = "block";
+  else{
+warning.style.display = "none";
   if (username.length && email.length && password.length && confirmPassword.length) {
     if (password == confirmPassword) {
       const aut = firebase.auth().createUserWithEmailAndPassword(email, password).then(cred => {
@@ -36,13 +40,16 @@ register.addEventListener('click', ref => {
         }).then(x=>{
           document.location.href = "./index.html";
         });
-        
-      });
+      }).catch(e => {
+          console.log("Connection Error!  id:" + e.message);
+          document.getElementById('alreadyExistAlert').style.display = "block";
+        });
     } else {
       console.log("Password Didn't march");
+	  document.getElementById('wrong').style.display = "block";
     }
   } else {
     console.log("Field can't be empty!");
   }
-
+  }
 });
