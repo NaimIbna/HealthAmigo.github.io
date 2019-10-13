@@ -3,6 +3,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log("logged in");
     document.getElementById("logout").style.display = "block";
     document.getElementById("login").style.display = "none";
+    //??
+    document.getElementById('userName').innerHTML = `<a class="nav-link" href="#">${user.displayName}</a>`;
   } else {
     console.log("logged out");
     document.getElementById("logout").style.display = "none";

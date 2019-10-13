@@ -53,7 +53,7 @@ register.addEventListener('click', ref => {
             'email': email,
             'password': password
           }).then(x => {
-            document.location.href = "./index.html";
+            // document.location.href = "./index.html";
           });
         }).catch(e => {
           console.log("Connection Error!  id:" + e.message);
@@ -67,4 +67,29 @@ register.addEventListener('click', ref => {
       console.log("Field can't be empty!");
     }
   }
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            console.log(user.uid);
+            if(user) {
+              user.updateProfile({ // <-- Update Method here
+
+                    displayName: username,
+                    photoURL: "https://example.com/jane-q-user/profile.jpg"
+
+                }).then(function () {
+                    var displayName = user.displayName;
+                    // "https://example.com/jane-q-user/profile.jpg"
+                    var photoURL = user.photoURL;
+                    console.log(displayName);
+
+                    // *
+                    window.alert('Resistration Successful!');
+                    document.location.href = "./index.html";
+                    console.log(user);
+                }, function (error) {
+                    // An error happened.
+                });
+            }
+        });
+  
 });

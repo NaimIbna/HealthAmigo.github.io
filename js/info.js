@@ -3,9 +3,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log("logged in");
     document.getElementById("logout").style.display = "block";
     document.getElementById("login").style.display = "none";
+    document.getElementById('userName').innerHTML = `<a class="nav-link" href="#">${user.displayName}</a>`;
     if (user.email == "admin@gmail.com") {
       console.log(user.email);
       document.getElementById("Info").style.display = "block";
+
     } else {
       document.getElementById("Info").style.display = "none";
     }
